@@ -1,5 +1,4 @@
 const { apiClient } = require('../utils/axiosInstance');
-
 const getAllPosts = () => apiClient.get('/posts');
 const getPostById = (id) => apiClient.get(`/posts/${id}`);
 const createPost = (body) => apiClient.post('/posts', body)
