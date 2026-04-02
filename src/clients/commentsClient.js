@@ -1,5 +1,4 @@
 const {apiClient} = require('../utils/axiosInstance');
-
 const getCommentsByPost = (postId) =>
 apiClient.get(`/posts/${postId}/comments`);
 

@@ -108,7 +108,6 @@ describe('Posts API', () => {
         const post = response.data;
         expect(post).toEqual({});
     });
-
     // //negative tests failed because JSONPlaceholder doesn't validate body
     // test('POST .../posts should return correct status code for invalid body',
     //     async () => {

@@ -18,7 +18,6 @@ describe('Comments API', () => {
 
         expect(comment.postId).toBe(1);
     });
-
     test('GET .../comments?postId=1 returns all comments contains postId = 1',
         async () => {
         const id = 1;    
