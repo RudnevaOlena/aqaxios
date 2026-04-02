@@ -1,0 +1,31 @@
+# dependencies
+node_modules/
+
+# environment variables
+.env
+.env.*
+
+# logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# build / coverage
+coverage/
+
+# OS files
+.DS_Store
+
+# IDE
+.vscode/
+
+# Jest cache
+jest-cache/
+
+# optional: dotenv example (keep this!)
+!.env.example
+
+# Ignore example client file
+src/clients/postsApiExample.js
