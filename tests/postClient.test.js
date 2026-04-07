@@ -1,24 +1,9 @@
-const { getAllPosts, getPostById, createPost, updatePost, patchPost, deletePost } = require('../src/clients/postsClient');
+import { getAllPosts, getPostById, createPost, updatePost, patchPost, deletePost }
+from '../src/clients/postsClient.js';
+import { createPostBody, createPatchBody, invalidPostBodyType, invalidPostBodyMissedField }
+from '../src/data/postFactory.js';
+
 describe('Posts API', () => {
-    const validPostBody = {
-        title: 'foo',
-        body: 'bar',
-        userId: 1
-    };
-    const patchBody = {
-        title: 'foo'
-    };
-
-    const invalidPostBodyType = {
-        title: 123,
-        body: 'bar',
-        userId: 'a'
-
-    };
-    const invalidPostBodyMissedField = {
-        body: 'bar',
-        userId: 'a'
-    };
 
     test('GET .../posts should return all posts', async () => {
         const response = await getAllPosts();
@@ -56,7 +41,9 @@ describe('Posts API', () => {
     });
 
     test('POST .../posts should create the new post', async () => {
-        const response = await createPost(validPostBody);
+        const bodyPost = createPostBody();
+        
+        const response = await createPost(bodyPost);
         expect(response.status).toBe(201);
 
         const post = response.data;
@@ -65,14 +52,15 @@ describe('Posts API', () => {
         expect(post).toHaveProperty('body');
         expect(post).toHaveProperty('userId');
 
-        expect(post.title).toBe(validPostBody.title);
-        expect(post.body).toBe(validPostBody.body);
-        expect(post.userId).toBe(validPostBody.userId);
+        expect(post.title).toBe(bodyPost.title);
+        expect(post.body).toBe(bodyPost.body);
+        expect(post.userId).toBe(bodyPost.userId);
     });
 
     test('PUT .../posts/id should update the post', async () => {
         const id = 1;
-        const response = await updatePost(id, validPostBody);
+        const updatedBody = createPostBody();
+        const response = await updatePost(id, updatedBody);
         expect(response.status).toBe(200);
 
         const post = response.data;
@@ -81,14 +69,15 @@ describe('Posts API', () => {
         expect(post).toHaveProperty('body');
         expect(post).toHaveProperty('userId');
 
-        expect(post.title).toBe(validPostBody.title);
-        expect(post.body).toBe(validPostBody.body);
-        expect(post.userId).toBe(validPostBody.userId);
+        expect(post.title).toBe(updatedBody.title);
+        expect(post.body).toBe(updatedBody.body);
+        expect(post.userId).toBe(updatedBody.userId);
     });
 
     test('PATCH .../posts/id should update specified fields of post', async () => {
         const id = 1;
-        const response = await patchPost(id, patchBody);
+        const patchData = createPatchBody();
+        const response = await patchPost(id, patchData);
         expect(response.status).toBe(200);
 
         const post = response.data;
@@ -97,7 +86,7 @@ describe('Posts API', () => {
         expect(post).toHaveProperty('body');
         expect(post).toHaveProperty('userId');
 
-        expect(post.title).toBe(patchBody.title);
+        expect(post.title).toBe(patchData.title);
     });
 
     test('DELETE .../posts/id should delete the post', async () => {

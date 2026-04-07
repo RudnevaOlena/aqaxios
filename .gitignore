@@ -4,6 +4,7 @@ node_modules/
 # environment variables
 .env
 .env.*
+.env.*.local
 
 # logs
 logs
@@ -29,3 +30,9 @@ jest-cache/
 
 # Ignore example client file
 src/clients/postsApiExample.js
+
+# Jest coverage
+coverage/
+
+# Test report
+html-report/

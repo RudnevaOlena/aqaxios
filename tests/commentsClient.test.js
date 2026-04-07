@@ -1,4 +1,6 @@
-const { getCommentsByPost, getCommentsByQuery } = require('../src/clients/commentsClient');
+import { getCommentsByPost, getCommentsByQuery } 
+from '../src/clients/commentsClient.js';
+
 describe('Comments API', () => {
     test('GET .../posts/1/comments returns all comments for post with id 1',
         async () => {
