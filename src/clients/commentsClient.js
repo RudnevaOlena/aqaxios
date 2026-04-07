@@ -1,11 +1,7 @@
-const {apiClient} = require('../utils/axiosInstance');
-const getCommentsByPost = (postId) =>
+import { apiClient } from '../utils/axiosInstance.js';
+
+export const getCommentsByPost = (postId) =>
 apiClient.get(`/posts/${postId}/comments`);
 
-const getCommentsByQuery = (postId) =>
+export const getCommentsByQuery = (postId) =>
 apiClient.get(`/comments?postId=${postId}`);
-
-module.exports = {
-getCommentsByPost,
-getCommentsByQuery
-};
